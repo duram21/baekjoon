@@ -16,5 +16,4 @@ int main(void) {
     while(tc--){
         solve();
     }
-    
 }
