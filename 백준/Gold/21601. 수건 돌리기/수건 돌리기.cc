@@ -17,33 +17,49 @@ void solve() {
 	ll cnt = 0;
 	// 첫째항 a
 	a = 1;
+	ll mina = 1;
 	while (true) {
-			ll tmp = (cur + 1) / (2);
-		//cout << gap << ' ' << cur << ' ' << tmp << ' ' << a << ' ' << k  << '\n';
-		if (cur % 2 == 0) {
+		//cout << gap << ' ' << cur << ' ' << ' ' << a << ' ' << k << ' ' << mina << '\n';
+		if (mina == a) {
+			ll tmp = (cur + 1) / 2;
 			if (k <= tmp) {
-				cout << a + (k-1) * gap * 2 << '\n';
-				break;
+				cout << a + (k - 1) * gap * 2 << '\n';
+				return;
 			}
 			else {
 				k -= tmp;
 			}
-			
-			a = a + gap;
+			if (cur % 2 == 0) {
+				a = a + gap;
+				mina = a;
+			}
+			else {
+				mina = a + gap;
+				a = a + gap * 3;
+				if (a > n) a = mina;
+			}
+			cur -= tmp;
+
 		}
 		else {
+			ll tmp = (cur) / 2;
 			if (k <= tmp) {
-				cout << a + (k-1) * gap * 2 << '\n';
-				break;
-
+				cout << a + (k - 1) * gap * 2 << '\n';
+				return;
 			}
 			else {
 				k -= tmp;
 			}
+			if (cur % 2 == 0) {
+				a = a + gap;
+				if (a > n) a = mina;
+			}
+			else {
+				a = mina;
 
-			a = a + gap * 3;
+			}
+			cur -= tmp;
 		}
-		cur -= tmp;
 		gap *= 2;
 	}
 }
