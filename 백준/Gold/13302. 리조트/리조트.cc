@@ -21,14 +21,11 @@ void solve() {
 	}
 	dp[0][0] = 0;
 	for (int i = 1; i <= n; i++) {
-		if (chk[i]) {
-			for (int j = 0; j <= 100; j++) {
-				dp[i][j] = dp[i - 1][j];
-			}
-			continue;
-		}
 		for (int j = 0; j <= 100; j++) {
 			dp[i][j] = min(dp[i][j], dp[i - 1][j] + 10000);
+			if (chk[i]) {
+				dp[i][j] = min(dp[i][j], dp[i - 1][j]);
+			}
 			if (i >= 3) {
 				dp[i][j + 1] = min(dp[i][j + 1], dp[i - 3][j] + 25000);
 			}
