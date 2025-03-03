@@ -1,0 +1,5 @@
+-- 코드를 작성해주세요
+SELECT A.ITEM_ID, A.ITEM_NAME
+FROM ITEM_INFO as A inner join ITEM_TREE as B on A.ITEM_ID = B.ITEM_ID
+WHERE B.PARENT_ITEM_ID is null
+order by ITEM_ID
