@@ -37,6 +37,7 @@ void solve() {
 			}
 		}
 	}
+	ll Ans = min(ans, cnt);
 	ans = 0;
 	flag = 0;
 	for (int i = 0; i < str.length(); i++) {
@@ -49,7 +50,6 @@ void solve() {
 			}
 		}
 	}
-	ll Ans = min(ans, cnt);
 	Ans = min(Ans, ans);
 	ans = 0;
 	flag = 0;
