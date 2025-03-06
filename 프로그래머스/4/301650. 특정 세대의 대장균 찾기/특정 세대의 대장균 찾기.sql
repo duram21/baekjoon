@@ -1,0 +1,14 @@
+with recursive cte(ID, PARENT_ID, LEVEL) as (
+    SELECT ID, PARENT_ID, 1
+    FROM ECOLI_DATA
+    WHERE PARENT_ID IS NULL
+    UNION ALL 
+    SELECT ECOLI_DATA.ID , ECOLI_DATA.PARENT_ID, cte.LEVEL + 1
+    FROM cte inner join ECOLI_DATA on cte.ID = ECOLI_DATA.PARENT_ID
+)
+
+SELECT ID
+FROM cte
+WHERE LEVEL = 3
+order by ID
+
