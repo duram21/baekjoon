@@ -8,7 +8,7 @@ ll arr[2020][2020];
 ll visited[2020][2020];
 ll par[2020][2020];
 ll cnt[2020][2020];
-queue<pair<pair<ll,ll>, ll>>q;
+queue<pair<pair<ll, ll>, ll>>q;
 ll dx[] = { -1,1 , 0, 0 };
 ll dy[] = { 0, 0, 1, -1 };
 ll ans = 1e12;
@@ -19,17 +19,22 @@ ll find(ll x, ll y) {
 }
 
 void bfs() {
+	ll mx = -1;
+	ll d = -1;
+	bool flag = 1;
+	queue<pair<pair<ll, ll>, ll>>tq;
 	while (q.size()) {
 		ll x = q.front().first.first;
 		ll y = q.front().first.second;
 		ll day = q.front().second;
 		q.pop();
-		ll mx = -1;
+
 		for (int i = 0; i < 4; i++) {
 			ll nx = x + dx[i];
 			ll ny = y + dy[i];
 
 			if (nx < 1 || ny < 1 || nx > n || ny > n) continue;
+
 			if (visited[nx][ny]) {
 				ll tx = x;
 				ll ty = y;
@@ -37,22 +42,27 @@ void bfs() {
 				ll pa = find(nx, ny);
 				ll pb = find(tx, ty);
 				if (pa == pb) continue;
-				mx = max(mx, min(visited[nx][ny], visited[x][y] + 1));
 				par[pa / 10000][pa % 10000] = pb;
-				cnt[pb / 10000][pb % 10000] += cnt[pa / 10000][pa % 10000];
-				if (cnt[pb / 10000][pb % 10000] == k) {
-
-					ans = min(ans, mx);
-				}
-				continue;
+				k--;
 			}
+		}
+		tq.push({ {x, y}, day });
+	}
+	if (k == 1) return;
+	while (tq.size()) {
+		ll x = tq.front().first.first;
+		ll y = tq.front().first.second;
+		ll day = tq.front().second;
+		tq.pop();
+		for (int i = 0; i < 4; i++) {
+			ll nx = x + dx[i];
+			ll ny = y + dy[i];
+
+			if (nx < 1 || ny < 1 || nx > n || ny > n) continue;
+			if (visited[nx][ny]) continue;
 			visited[nx][ny] = visited[x][y] + 1;
-			par[nx][ny] = par[x][y];
-			for (int j = 0; j < 4; j++) {
-				ll tx = nx + dx[i];
-				ll ty = ny + dy[i];
-
-			}
+			ll val = find(x, y);
+			par[nx][ny] = find(x, y);
 			q.push({ {nx, ny}, day + 1 });
 		}
 	}
@@ -72,8 +82,15 @@ void solve() {
 		cnt[a][b] = 1;
 		q.push({ {a, b}, 0 });
 	}
-	bfs();
-	cout << ans - 1<< '\n';
+	ll ans = 0;
+	while (1) {
+		bfs();
+		if (k == 1) {
+			break;
+		}
+		ans++;
+	}
+	cout << ans << '\n';
 }
 
 int main(void) {
