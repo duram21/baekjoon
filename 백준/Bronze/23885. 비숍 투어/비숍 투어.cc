@@ -10,7 +10,14 @@ void solve() {
     cin >> n >> m;
     cin >> a >> b;
     cin >> c >> d;
-    if ((a +b) % 2== (c+d) % 2) cout << "YES\n";
+    if (n == 1 || m == 1) {
+        if (a == c && b == d) {
+            cout << "YES\n";
+        }
+        else cout << "NO\n";
+        return;
+    }
+    if ((a + b) % 2 == (c + d) % 2) cout << "YES\n";
     else cout << "NO\n";
 }
 
