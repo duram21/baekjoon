@@ -5,8 +5,8 @@ using namespace std;
 using ll = long long;
 
 ll x, n, a, b, c, d, m, k, sqrtn, q;
-ll arr[202020];
-ll tree[202020 * 4][2];
+ll arr[302020];
+ll tree[302020 * 4][2];
 ll mod = 998244353;
 
 void update(ll st, ll en, ll node, ll idx, ll val, ll k) {
