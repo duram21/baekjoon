@@ -19,28 +19,20 @@ void solve() {
 	for (int i = n; i >= 1; i--) {
 		cnt[i] = max(cnt[i + 1], cnt[i + l] + (chk[i] > 0));
 	}
-	/*for (int i = 1; i <= n; i++) {
-		cout << cnt[i] << ' ';
-	}
-	cout << '\n';
-	for (int i = 1; i <= n; i++) {
-		cout << chk[i] << ' ';
-	}
-	cout << '\n';*/
-	for (int i = 0; i <= n- l + 1; i++) dp[i] = 1e9;
-	//dp[n] = 0;
+
+	for (int i = 0; i <= n - l + 1; i++) dp[i] = 1e9;
 
 	for (int i = n - l + 1; i >= 1; i--) {
 		if (cnt[i] != cnt[i + l]) {
 			if (chk[i]) {
-				dp[i] = dp[i + l]; 
+				dp[i] = dp[i + l];
 			}
 			else {
 				dp[i] = dp[i + 1];
 			}
 		}
 		else {
-			dp[i] = max(dp[i + l] + 1, dp[i+1]);
+			dp[i] = max(dp[i + l] + 1, dp[i + 1]);
 		}
 	}
 
