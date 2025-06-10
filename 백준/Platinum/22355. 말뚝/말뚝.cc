@@ -62,12 +62,12 @@ ll func(ll st, ll en) {
         ll mid = (l + r) >> 1;
         if (sum(A, 1, N, 1, mid, mid) > 0) {
             r = mid - 1;
-            aa = mid;
         }
         else {
             l = mid + 1;
         }
     }
+    aa = l;
     ll tmp = sum(A, 1, N, 1, aa, aa);
 
 
