@@ -102,7 +102,7 @@ void solve() {
 
     // root 1이라고 생각
     for (int i = 2; i <= n; i++) {
-        update(1, n, 1, i, 1);
+        update(1, n, 1, in[i], 1);
     }
 
     while (m--) {
@@ -111,10 +111,10 @@ void solve() {
         if (flag) cout << "YES\n";
         else cout << "NO\n";
         if (c && flag) {
-            update(1, n, 1, a, 0);
+            update(1, n, 1, in[a], 0);
         }
         else if(c && !flag) {
-            update(1, n, 1, b, 0);
+            update(1, n, 1, in[b], 0);
         }
     }
 }
