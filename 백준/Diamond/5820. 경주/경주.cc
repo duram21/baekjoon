@@ -8,7 +8,7 @@ ll n, a, b, c, d, f, k, p, e, q, m;
 ll sz[202020];
 vector<pair<ll,ll>>v[202020];
 ll visited[202020];
-ll min_depth[202020];
+ll min_depth[1010101];
 vector<ll>tree;
 
 ll dfs_size(ll x, ll par){
@@ -93,7 +93,7 @@ void solve() {
         v[a].push_back({b,c});
         v[b].push_back({a,c});
     }
-    for(int i = 0 ; i <= n; i++) min_depth[i] = 1e12;
+    for(int i = 0 ; i <= k; i++) min_depth[i] = 1e12;
     ll ans = dnc(0);
     if(ans == 1e12) cout << -1 << '\n';
     else cout << ans << '\n';
