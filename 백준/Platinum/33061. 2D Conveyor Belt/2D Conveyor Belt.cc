@@ -38,7 +38,7 @@ void dfs(ll x, ll y){
     for(int i = 0 ; i < 4; i++){
         ll nx = x + dx[i];
         ll ny = y + dy[i];
-        if(!chk(nx, ny)) continue;
+        if(!pos(nx, ny)) continue;
         dfs(nx, ny);
     }
 }
