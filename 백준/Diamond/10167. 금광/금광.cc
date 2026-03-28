@@ -97,7 +97,7 @@ void solve() {
             b = arr[j].y;
             c = arr[j].w;
 			update(1, n, 1, b, c);
-			if(j == n || arr[j].x != arr[j+1].x) ans = max(ans, tree[1].mmax);
+			ans = max(ans, tree[1].mmax);
 		}
 	}
 	cout << ans << '\n';
