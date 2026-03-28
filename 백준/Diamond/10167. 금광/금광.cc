@@ -27,7 +27,7 @@ srt update(ll st, ll en, ll node, ll idx, ll val) {
 	if (idx < st || en < idx) return tree[node];
 	if (st == en) {
         tree[node].sum += val;
-		tree[node].lmax = tree[node].rmax = tree[node].mmax = max(tree[node].sum, 0LL);
+		tree[node].lmax = tree[node].rmax = tree[node].mmax = tree[node].sum;
 		return tree[node];
 	}
 
@@ -90,14 +90,14 @@ void solve() {
 	sort(arr + 1, arr + 1 + n);
 	ll ans = 0;
 	for (int i = 1; i <= n; i++) {
-        
+        if(i >= 2 && arr[i-1].x == arr[i].x) continue;
         init();
 		for (int j = i; j <= n; j++) {
             a = arr[j].x;
             b = arr[j].y;
             c = arr[j].w;
 			update(1, n, 1, b, c);
-			if(j == n || arr[j].y != arr[j+1].y) ans = max(ans, tree[1].mmax);
+			if(j == n || arr[j].x != arr[j+1].x) ans = max(ans, tree[1].mmax);
 		}
 	}
 	cout << ans << '\n';
